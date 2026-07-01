@@ -1,0 +1,5 @@
+varUserAgent,varName,varEmail,varGender,varStatus,varIDtoDelete
+"Mozilla/5.0 ( Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36 Edg/149.0.4022.80",Karthic,karthic@postman.com,male,inactive,8521093
+"Mozilla/5.0 (Macintosh; Intel Mac OS X 15_7_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15",Archana,archana@postman.com,female,active,8521122
+Mozilla/5.0 (X11; Linux i686; rv:152.0) Gecko/20100101 Firefox/152.0,Atiya,atiya@postman.com,female,inactive,8521092
+"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.7827.198 Mobile Safari/537.36",Sumeet,sumeet@postman.com,male,active,8521091

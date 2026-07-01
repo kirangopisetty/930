@@ -1,0 +1,329 @@
+{
+	"id": "e4d4ad3e-3a53-4d2b-a41a-095841ad21ba",
+	"name": "GOREST-PROJECT",
+	"timestamp": "2026-06-25T16:25:12.486Z",
+	"collection_id": "54718023-849fe6b8-e1cb-40f4-938b-89b43906f937",
+	"folder_id": "54718023-00d0ab74-c3cd-4c5b-b525-12d3f89c175a",
+	"environment_id": "0",
+	"totalPass": 54,
+	"delay": "0",
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2026-06-25T16:25:02.937Z",
+	"totalFail": 22,
+	"results": [
+		{
+			"id": "0aaf4e7a-e72d-498f-a81b-9cf6a5132ad7",
+			"name": "CREATE USER API",
+			"url": "https://gorest.co.in/public/v2/users",
+			"time": 363,
+			"responseCode": {
+				"code": 422,
+				"name": "Unprocessable Entity (WebDAV) (RFC 4918)"
+			},
+			"tests": {
+				"Verify if response code is 201 Created": false,
+				"Verify if response time < 2500ms": true,
+				"Verify if response body is in JSON format": true,
+				"Verify if the response body is valid": false,
+				"Verify if gender is male or female": false,
+				"Verify if status is active or inactive": false
+			},
+			"testPassFailCounts": {
+				"Verify if response code is 201 Created": {
+					"pass": 0,
+					"fail": 4
+				},
+				"Verify if response time < 2500ms": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response body is in JSON format": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if the response body is valid": {
+					"pass": 0,
+					"fail": 4
+				},
+				"Verify if gender is male or female": {
+					"pass": 0,
+					"fail": 4
+				},
+				"Verify if status is active or inactive": {
+					"pass": 0,
+					"fail": 4
+				}
+			},
+			"times": [
+				953,
+				375,
+				403,
+				363
+			],
+			"allTests": [
+				{
+					"Verify if response code is 201 Created": false,
+					"Verify if response time < 2500ms": true,
+					"Verify if response body is in JSON format": true,
+					"Verify if the response body is valid": false,
+					"Verify if gender is male or female": false,
+					"Verify if status is active or inactive": false
+				},
+				{
+					"Verify if response code is 201 Created": false,
+					"Verify if response time < 2500ms": true,
+					"Verify if response body is in JSON format": true,
+					"Verify if the response body is valid": false,
+					"Verify if gender is male or female": false,
+					"Verify if status is active or inactive": false
+				},
+				{
+					"Verify if response code is 201 Created": false,
+					"Verify if response time < 2500ms": true,
+					"Verify if response body is in JSON format": true,
+					"Verify if the response body is valid": false,
+					"Verify if gender is male or female": false,
+					"Verify if status is active or inactive": false
+				},
+				{
+					"Verify if response code is 201 Created": false,
+					"Verify if response time < 2500ms": true,
+					"Verify if response body is in JSON format": true,
+					"Verify if the response body is valid": false,
+					"Verify if gender is male or female": false,
+					"Verify if status is active or inactive": false
+				}
+			]
+		},
+		{
+			"id": "c88d2e50-002d-47bc-b3e1-4c3f5ddb4205",
+			"name": "UPDATE USER API",
+			"url": "https://gorest.co.in/public/v2/users/8520650",
+			"time": 331,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if response code is 200 OK": true,
+				"Verify if response time < 2500ms": true,
+				"Verify if response body is in JSON format": true,
+				"Verify if the response body is valid": true,
+				"Verify if gender is male or female": true,
+				"Verify if status is active or inactive": true
+			},
+			"testPassFailCounts": {
+				"Verify if response code is 200 OK": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response time < 2500ms": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response body is in JSON format": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if the response body is valid": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if gender is male or female": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if status is active or inactive": {
+					"pass": 4,
+					"fail": 0
+				}
+			},
+			"times": [
+				353,
+				334,
+				380,
+				331
+			],
+			"allTests": [
+				{
+					"Verify if response code is 200 OK": true,
+					"Verify if response time < 2500ms": true,
+					"Verify if response body is in JSON format": true,
+					"Verify if the response body is valid": true,
+					"Verify if gender is male or female": true,
+					"Verify if status is active or inactive": true
+				},
+				{
+					"Verify if response code is 200 OK": true,
+					"Verify if response time < 2500ms": true,
+					"Verify if response body is in JSON format": true,
+					"Verify if the response body is valid": true,
+					"Verify if gender is male or female": true,
+					"Verify if status is active or inactive": true
+				},
+				{
+					"Verify if response code is 200 OK": true,
+					"Verify if response time < 2500ms": true,
+					"Verify if response body is in JSON format": true,
+					"Verify if the response body is valid": true,
+					"Verify if gender is male or female": true,
+					"Verify if status is active or inactive": true
+				},
+				{
+					"Verify if response code is 200 OK": true,
+					"Verify if response time < 2500ms": true,
+					"Verify if response body is in JSON format": true,
+					"Verify if the response body is valid": true,
+					"Verify if gender is male or female": true,
+					"Verify if status is active or inactive": true
+				}
+			]
+		},
+		{
+			"id": "a5e23f87-0084-4d1a-a8aa-eb9c73d217d3",
+			"name": "DELETE USER API",
+			"url": "https://gorest.co.in/public/v2/users/8520651",
+			"time": 363,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Verify if response code is 204 No Content": false,
+				"Verify if response time < 2000ms": true,
+				"Verify if response body is empty": false
+			},
+			"testPassFailCounts": {
+				"Verify if response code is 204 No Content": {
+					"pass": 1,
+					"fail": 3
+				},
+				"Verify if response time < 2000ms": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response body is empty": {
+					"pass": 1,
+					"fail": 3
+				}
+			},
+			"times": [
+				402,
+				333,
+				442,
+				363
+			],
+			"allTests": [
+				{
+					"Verify if response code is 204 No Content": true,
+					"Verify if response time < 2000ms": true,
+					"Verify if response body is empty": true
+				},
+				{
+					"Verify if response code is 204 No Content": false,
+					"Verify if response time < 2000ms": true,
+					"Verify if response body is empty": false
+				},
+				{
+					"Verify if response code is 204 No Content": false,
+					"Verify if response time < 2000ms": true,
+					"Verify if response body is empty": false
+				},
+				{
+					"Verify if response code is 204 No Content": false,
+					"Verify if response time < 2000ms": true,
+					"Verify if response body is empty": false
+				}
+			]
+		},
+		{
+			"id": "b71916eb-024c-40e3-a8cf-b47fc97e1f20",
+			"name": "LIST USERS API",
+			"url": "https://gorest.co.in/public/v2/users",
+			"time": 329,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if response code is 200 OK": true,
+				"Verfiy if response time < 2000ms": true,
+				"Verify if response body is in JSON format": true,
+				"Verify if the response body is valid": true
+			},
+			"testPassFailCounts": {
+				"Verify if response code is 200 OK": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verfiy if response time < 2000ms": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response body is in JSON format": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if the response body is valid": {
+					"pass": 4,
+					"fail": 0
+				}
+			},
+			"times": [
+				380,
+				367,
+				365,
+				329
+			],
+			"allTests": [
+				{
+					"Verify if response code is 200 OK": true,
+					"Verfiy if response time < 2000ms": true,
+					"Verify if response body is in JSON format": true,
+					"Verify if the response body is valid": true
+				},
+				{
+					"Verify if response code is 200 OK": true,
+					"Verfiy if response time < 2000ms": true,
+					"Verify if response body is in JSON format": true,
+					"Verify if the response body is valid": true
+				},
+				{
+					"Verify if response code is 200 OK": true,
+					"Verfiy if response time < 2000ms": true,
+					"Verify if response body is in JSON format": true,
+					"Verify if the response body is valid": true
+				},
+				{
+					"Verify if response code is 200 OK": true,
+					"Verfiy if response time < 2000ms": true,
+					"Verify if response body is in JSON format": true,
+					"Verify if the response body is valid": true
+				}
+			]
+		}
+	],
+	"count": 4,
+	"totalTime": 6473,
+	"collection": {
+		"requests": [
+			{
+				"id": "0aaf4e7a-e72d-498f-a81b-9cf6a5132ad7",
+				"method": "POST"
+			},
+			{
+				"id": "c88d2e50-002d-47bc-b3e1-4c3f5ddb4205",
+				"method": "PUT"
+			},
+			{
+				"id": "a5e23f87-0084-4d1a-a8aa-eb9c73d217d3",
+				"method": "DELETE"
+			},
+			{
+				"id": "b71916eb-024c-40e3-a8cf-b47fc97e1f20",
+				"method": "GET"
+			}
+		]
+	}
+}

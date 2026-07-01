@@ -1,0 +1,1590 @@
+{
+  "info": {
+    "_postman_id": "add89ab8-5e6a-4838-ba07-da58aa0a8406",
+    "name": "BlazeDemo Auth API Tests",
+    "description": "Tests for BlazeDemo Laravel-style web authentication HTML form workflows. These use application/x-www-form-urlencoded bodies, session cookies, and CSRF tokens. Flow: GET the form page to capture CSRF token, then POST the form.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54718023",
+    "_collection_link": "https://go.postman.co/collection/54718023-add89ab8-5e6a-4838-ba07-da58aa0a8406?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Positive Testing",
+      "item": [
+        {
+          "name": "POST Password Reset - Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status indicates success or redirect', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Redirect sets Location header or session cookie', function () {",
+                  "    if (pm.response.code === 302) {",
+                  "        const hasLocation = pm.response.headers.has('Location');",
+                  "        const hasSessionCookie = pm.cookies.has('laravel_session') || pm.response.headers.has('Set-Cookie');",
+                  "        pm.expect(hasLocation || hasSessionCookie).to.be.true;",
+                  "    }",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": "valid@example.com"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/password/reset",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "password",
+                "reset"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/password/reset' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'email=valid@example.com'"
+          },
+          "response": []
+        },
+        {
+          "name": "GET Password Reset Page",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "})",
+                  "",
+                  "pm.test('Password reset form is present', function () {",
+                  "    pm.expect(pm.response.text().toLowerCase()).to.include('password');",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/password/reset",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "password",
+                "reset"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/password/reset'"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Register - Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status indicates success or redirect', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Redirect sets Location header or session cookie', function () {",
+                  "    if (pm.response.code === 302) {",
+                  "        const hasLocation = pm.response.headers.has('Location');",
+                  "        const hasSessionCookie = pm.cookies.has('laravel_session') || pm.response.headers.has('Set-Cookie');",
+                  "        pm.expect(hasLocation || hasSessionCookie).to.be.true;",
+                  "    }",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "name",
+                  "value": "Test User"
+                },
+                {
+                  "type": "text",
+                  "key": "company",
+                  "value": "TestCo"
+                },
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": "newuser@example.com"
+                },
+                {
+                  "type": "text",
+                  "key": "password",
+                  "value": "ValidPass123"
+                },
+                {
+                  "type": "text",
+                  "key": "password_confirmation",
+                  "value": "ValidPass123"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "register"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/register' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'name=Test User' --data-urlencode 'company=TestCo' --data-urlencode 'email=newuser@example.com' --data-urlencode 'password=ValidPass123' --data-urlencode 'password_confirmation=ValidPass123'"
+          },
+          "response": []
+        },
+        {
+          "name": "GET Register Page",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "})",
+                  "",
+                  "pm.test('Register form is present', function () {",
+                  "    pm.expect(pm.response.text().toLowerCase()).to.include('register');",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "register"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/register'"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Login - Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status indicates success or redirect', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Redirect sets Location header or session cookie', function () {",
+                  "    if (pm.response.code === 302) {",
+                  "        const hasLocation = pm.response.headers.has('Location');",
+                  "        const hasSessionCookie = pm.cookies.has('laravel_session') || pm.response.headers.has('Set-Cookie');",
+                  "        pm.expect(hasLocation || hasSessionCookie).to.be.true;",
+                  "    }",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": "valid@example.com"
+                },
+                {
+                  "type": "text",
+                  "key": "password",
+                  "value": "ValidPass123"
+                },
+                {
+                  "type": "text",
+                  "key": "remember",
+                  "value": "on"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/login' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'email=valid@example.com' --data-urlencode 'password=ValidPass123' --data-urlencode 'remember=on'"
+          },
+          "response": []
+        },
+        {
+          "name": "GET Login Page",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "})",
+                  "",
+                  "pm.test('Login form is present', function () {",
+                  "    pm.expect(pm.response.text()).to.include('login');",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/login'"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Negative Testing",
+      "item": [
+        {
+          "name": "POST Password Reset - Empty Email",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Does not process reset (no success)', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302,",
+                  "        419,",
+                  "        422",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Does not redirect to authenticated dashboard', function () {",
+                  "    if (pm.response.code === 302) {",
+                  "        const location = pm.response.headers.get('Location') || '';",
+                  "        pm.expect(location.toLowerCase()).to.not.include('dashboard');",
+                  "    }",
+                  "})",
+                  "",
+                  "pm.test('Shows email required validation error if body present', function () {",
+                  "    const body = pm.response.text().toLowerCase();",
+                  "    if (body.includes('email') && (body.includes('required') || body.includes('error'))) {",
+                  "        pm.expect(body).to.match(/email.*(required|field)|required|error/);",
+                  "    }",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": ""
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/password/reset",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "password",
+                "reset"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/password/reset' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'email='"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Register - Invalid Email",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Does not complete registration (no success)', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302,",
+                  "        419,",
+                  "        422",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Does not redirect to authenticated dashboard', function () {",
+                  "    if (pm.response.code === 302) {",
+                  "        const location = pm.response.headers.get('Location') || '';",
+                  "        pm.expect(location.toLowerCase()).to.not.include('dashboard');",
+                  "    }",
+                  "})",
+                  "",
+                  "pm.test('Shows invalid email validation error if body present', function () {",
+                  "    const body = pm.response.text().toLowerCase();",
+                  "    if (body.includes('email') && (body.includes('valid') || body.includes('error'))) {",
+                  "        pm.expect(body).to.match(/email.*(valid|format)|valid.*email|error/);",
+                  "    }",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "name",
+                  "value": "Test User"
+                },
+                {
+                  "type": "text",
+                  "key": "company",
+                  "value": "TestCo"
+                },
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": "not-an-email"
+                },
+                {
+                  "type": "text",
+                  "key": "password",
+                  "value": "ValidPass123"
+                },
+                {
+                  "type": "text",
+                  "key": "password_confirmation",
+                  "value": "ValidPass123"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "register"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/register' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'name=Test User' --data-urlencode 'company=TestCo' --data-urlencode 'email=not-an-email' --data-urlencode 'password=ValidPass123' --data-urlencode 'password_confirmation=ValidPass123'"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Register - Password Mismatch",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Does not complete registration (no success)', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302,",
+                  "        419,",
+                  "        422",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Does not redirect to authenticated dashboard', function () {",
+                  "    if (pm.response.code === 302) {",
+                  "        const location = pm.response.headers.get('Location') || '';",
+                  "        pm.expect(location.toLowerCase()).to.not.include('dashboard');",
+                  "    }",
+                  "})",
+                  "",
+                  "pm.test('Shows password confirmation error if body present', function () {",
+                  "    const body = pm.response.text().toLowerCase();",
+                  "    if (body.includes('confirm') || body.includes('match') || body.includes('error')) {",
+                  "        pm.expect(body).to.match(/confirm|match|error/);",
+                  "    }",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "name",
+                  "value": "Test User"
+                },
+                {
+                  "type": "text",
+                  "key": "company",
+                  "value": "TestCo"
+                },
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": "newuser@example.com"
+                },
+                {
+                  "type": "text",
+                  "key": "password",
+                  "value": "ValidPass123"
+                },
+                {
+                  "type": "text",
+                  "key": "password_confirmation",
+                  "value": "DifferentPass"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "register"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/register' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'name=Test User' --data-urlencode 'company=TestCo' --data-urlencode 'email=newuser@example.com' --data-urlencode 'password=ValidPass123' --data-urlencode 'password_confirmation=DifferentPass'"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Login - Missing Password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Does not grant access (no success)', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302,",
+                  "        419,",
+                  "        422",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Does not redirect to authenticated dashboard', function () {",
+                  "    if (pm.response.code === 302) {",
+                  "        const location = pm.response.headers.get('Location') || '';",
+                  "        pm.expect(location.toLowerCase()).to.not.include('dashboard');",
+                  "    }",
+                  "})",
+                  "",
+                  "pm.test('Shows password required validation if body present', function () {",
+                  "    const body = pm.response.text().toLowerCase();",
+                  "    if (body.includes('password') && (body.includes('required') || body.includes('error'))) {",
+                  "        pm.expect(body).to.match(/password.*(required|field)|required/);",
+                  "    }",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": "valid@example.com"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/login' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'email=valid@example.com'"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Login - Invalid Credentials",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Does not grant access (no success)', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302,",
+                  "        419,",
+                  "        422",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Does not redirect to authenticated dashboard', function () {",
+                  "    if (pm.response.code === 302) {",
+                  "        const location = pm.response.headers.get('Location') || '';",
+                  "        pm.expect(location.toLowerCase()).to.not.include('dashboard');",
+                  "        pm.expect(location.toLowerCase()).to.not.include('home');",
+                  "    }",
+                  "})",
+                  "",
+                  "pm.test('Shows credential error if body present', function () {",
+                  "    const body = pm.response.text().toLowerCase();",
+                  "    if (body.includes('credentials') || body.includes('invalid') || body.includes('error')) {",
+                  "        pm.expect(body).to.match(/credentials|invalid|error/);",
+                  "    }",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": "wrong@example.com"
+                },
+                {
+                  "type": "text",
+                  "key": "password",
+                  "value": "wrongpass"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/login' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'email=wrong@example.com' --data-urlencode 'password=wrongpass'"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Login - Missing Email",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is one of expected', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302,",
+                  "        419,",
+                  "        422",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Does not redirect to authenticated dashboard', function () {",
+                  "    if (pm.response.code === 302) {",
+                  "        const location = (pm.response.headers.get('Location') || '').toLowerCase();",
+                  "        pm.expect(location).to.not.include('dashboard');",
+                  "        pm.expect(location).to.not.include('home');",
+                  "    }",
+                  "})",
+                  "",
+                  "pm.test('Shows email-required validation hint if body present', function () {",
+                  "    const body = pm.response.text();",
+                  "    if (body && /email|required/i.test(body)) {",
+                  "        pm.expect(body).to.match(/email|required/i);",
+                  "    }",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "password",
+                  "value": "ValidPass123"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/login' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'password=ValidPass123'"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Login - Invalid Email Format",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is one of expected', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302,",
+                  "        419,",
+                  "        422",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Does not redirect to authenticated dashboard', function () {",
+                  "    if (pm.response.code === 302) {",
+                  "        const location = (pm.response.headers.get('Location') || '').toLowerCase();",
+                  "        pm.expect(location).to.not.include('dashboard');",
+                  "        pm.expect(location).to.not.include('home');",
+                  "    }",
+                  "})",
+                  "",
+                  "pm.test('Shows email-validity hint if body present', function () {",
+                  "    const body = pm.response.text();",
+                  "    if (body && /email|valid/i.test(body)) {",
+                  "        pm.expect(body).to.match(/email|valid/i);",
+                  "    }",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": "notanemail"
+                },
+                {
+                  "type": "text",
+                  "key": "password",
+                  "value": "ValidPass123"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/login' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'email=notanemail' --data-urlencode 'password=ValidPass123'"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Login - Missing CSRF Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is one of expected', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        419,",
+                  "        200,",
+                  "        302,",
+                  "        403",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('CSRF protection enforced', function () {",
+                  "    if (pm.response.code === 419 || pm.response.code === 403) {",
+                  "        pm.expect([",
+                  "            419,",
+                  "            403",
+                  "        ]).to.include(pm.response.code);",
+                  "    }",
+                  "})",
+                  "",
+                  "pm.test('Does not redirect to authenticated dashboard', function () {",
+                  "    if (pm.response.code === 302) {",
+                  "        const location = (pm.response.headers.get('Location') || '').toLowerCase();",
+                  "        pm.expect(location).to.not.include('dashboard');",
+                  "        pm.expect(location).to.not.include('home');",
+                  "    }",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": "valid@example.com"
+                },
+                {
+                  "type": "text",
+                  "key": "password",
+                  "value": "ValidPass123"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/login' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode 'email=valid@example.com' --data-urlencode 'password=ValidPass123'"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Login - SQL Injection Attempt",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is one of expected', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302,",
+                  "        419,",
+                  "        422",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Injection does not grant authenticated access', function () {",
+                  "    if (pm.response.code === 302) {",
+                  "        const location = (pm.response.headers.get('Location') || '').toLowerCase();",
+                  "        pm.expect(location).to.not.include('dashboard');",
+                  "        pm.expect(location).to.not.include('home');",
+                  "    }",
+                  "})",
+                  "",
+                  "pm.test('Does not expose SQL error string', function () {",
+                  "    const body = pm.response.text();",
+                  "    pm.expect(/sql syntax|sqlstate|mysql/i.test(body)).to.be.false;",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": "' OR '1'='1"
+                },
+                {
+                  "type": "text",
+                  "key": "password",
+                  "value": "' OR '1'='1"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/login' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'email='\"'\"' OR '\"'\"'1'\"'\"'='\"'\"'1' --data-urlencode 'password='\"'\"' OR '\"'\"'1'\"'\"'='\"'\"'1'"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Register - Duplicate Email",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is one of expected', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302,",
+                  "        419,",
+                  "        422",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Does not redirect to authenticated dashboard', function () {",
+                  "    if (pm.response.code === 302) {",
+                  "        const location = (pm.response.headers.get('Location') || '').toLowerCase();",
+                  "        pm.expect(location).to.not.include('dashboard');",
+                  "        pm.expect(location).to.not.include('home');",
+                  "    }",
+                  "})",
+                  "",
+                  "pm.test('Shows uniqueness validation hint if body present', function () {",
+                  "    const body = pm.response.text();",
+                  "    if (body && /taken|already|exists|error/i.test(body)) {",
+                  "        pm.expect(body).to.match(/taken|already|exists|error/i);",
+                  "    }",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "name",
+                  "value": "Test User"
+                },
+                {
+                  "type": "text",
+                  "key": "company",
+                  "value": "TestCo"
+                },
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": "valid@example.com"
+                },
+                {
+                  "type": "text",
+                  "key": "password",
+                  "value": "ValidPass123"
+                },
+                {
+                  "type": "text",
+                  "key": "password_confirmation",
+                  "value": "ValidPass123"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "register"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/register' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'name=Test User' --data-urlencode 'company=TestCo' --data-urlencode 'email=valid@example.com' --data-urlencode 'password=ValidPass123' --data-urlencode 'password_confirmation=ValidPass123'"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Register - Missing Name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is one of expected', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302,",
+                  "        419,",
+                  "        422",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Does not redirect to authenticated dashboard', function () {",
+                  "    if (pm.response.code === 302) {",
+                  "        const location = (pm.response.headers.get('Location') || '').toLowerCase();",
+                  "        pm.expect(location).to.not.include('dashboard');",
+                  "        pm.expect(location).to.not.include('home');",
+                  "    }",
+                  "})",
+                  "",
+                  "pm.test('Shows name-required validation hint if body present', function () {",
+                  "    const body = pm.response.text();",
+                  "    if (body && /name|required/i.test(body)) {",
+                  "        pm.expect(body).to.match(/name|required/i);",
+                  "    }",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "company",
+                  "value": "TestCo"
+                },
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": "newuser2@example.com"
+                },
+                {
+                  "type": "text",
+                  "key": "password",
+                  "value": "ValidPass123"
+                },
+                {
+                  "type": "text",
+                  "key": "password_confirmation",
+                  "value": "ValidPass123"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "register"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/register' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'company=TestCo' --data-urlencode 'email=newuser2@example.com' --data-urlencode 'password=ValidPass123' --data-urlencode 'password_confirmation=ValidPass123'"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Register - Weak Short Password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is one of expected', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302,",
+                  "        419,",
+                  "        422",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Does not redirect to authenticated dashboard', function () {",
+                  "    if (pm.response.code === 302) {",
+                  "        const location = (pm.response.headers.get('Location') || '').toLowerCase();",
+                  "        pm.expect(location).to.not.include('dashboard');",
+                  "        pm.expect(location).to.not.include('home');",
+                  "    }",
+                  "})",
+                  "",
+                  "pm.test('Shows password min-length validation hint if body present', function () {",
+                  "    const body = pm.response.text();",
+                  "    if (body && /password|character|least/i.test(body)) {",
+                  "        pm.expect(body).to.match(/password|character|least/i);",
+                  "    }",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "name",
+                  "value": "Test User"
+                },
+                {
+                  "type": "text",
+                  "key": "company",
+                  "value": "TestCo"
+                },
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": "newuser3@example.com"
+                },
+                {
+                  "type": "text",
+                  "key": "password",
+                  "value": "123"
+                },
+                {
+                  "type": "text",
+                  "key": "password_confirmation",
+                  "value": "123"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "register"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/register' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'name=Test User' --data-urlencode 'company=TestCo' --data-urlencode 'email=newuser3@example.com' --data-urlencode 'password=123' --data-urlencode 'password_confirmation=123'"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Register - XSS in Name Field",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is one of expected', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302,",
+                  "        419,",
+                  "        422",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Raw script tag is not reflected verbatim (XSS escaped)', function () {",
+                  "    pm.expect(pm.response.text()).to.not.include('<script>alert(1)</script>');",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "name",
+                  "value": "<script>alert(1)</script>"
+                },
+                {
+                  "type": "text",
+                  "key": "company",
+                  "value": "TestCo"
+                },
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": "newuser4@example.com"
+                },
+                {
+                  "type": "text",
+                  "key": "password",
+                  "value": "ValidPass123"
+                },
+                {
+                  "type": "text",
+                  "key": "password_confirmation",
+                  "value": "ValidPass123"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "register"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/register' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'name=<script>alert(1)</script>' --data-urlencode 'company=TestCo' --data-urlencode 'email=newuser4@example.com' --data-urlencode 'password=ValidPass123' --data-urlencode 'password_confirmation=ValidPass123'"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Password Reset - Invalid Email Format",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is one of expected', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302,",
+                  "        419,",
+                  "        422",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Shows email-validity hint if body present', function () {",
+                  "    const body = pm.response.text();",
+                  "    if (body && /email|valid/i.test(body)) {",
+                  "        pm.expect(body).to.match(/email|valid/i);",
+                  "    }",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": "notanemail"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/password/reset",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "password",
+                "reset"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/password/reset' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'email=notanemail'"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Password Reset - Unregistered Email",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is one of expected', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([",
+                  "        200,",
+                  "        302,",
+                  "        419,",
+                  "        422",
+                  "    ]);",
+                  "})",
+                  "",
+                  "pm.test('Response time under 5s', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "})",
+                  "",
+                  "pm.test('Shows not-found or generic confirmation hint if body present', function () {",
+                  "    const body = pm.response.text();",
+                  "    if (body && /not|unable|email|sent/i.test(body)) {",
+                  "        pm.expect(body).to.match(/not|unable|email|sent/i);",
+                  "    }",
+                  "})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "_token",
+                  "value": "{{csrf_token}}"
+                },
+                {
+                  "type": "text",
+                  "key": "email",
+                  "value": "doesnotexist@nowhere.test"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/password/reset",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "password",
+                "reset"
+              ]
+            },
+            "description": "Generated from cURL: curl --location '{{baseUrl}}/password/reset' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_token={{csrf_token}}' --data-urlencode 'email=doesnotexist@nowhere.test'"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://blazedemo.com"
+    }
+  ]
+}

@@ -1,0 +1,646 @@
+{
+  "info": {
+    "_postman_id": "526c7c3f-897e-43d9-a015-4aaedb3f91e7",
+    "name": "JSONPlaceholder REST API Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54718023",
+    "_collection_link": "https://go.postman.co/collection/54718023-526c7c3f-897e-43d9-a015-4aaedb3f91e7?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Positive Testing",
+      "item": [
+        {
+          "name": "GET - Fetch Post (Positive)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response time is less than 2000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});",
+                  "",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "pm.test(\"Response body has required fields\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"userId\");",
+                  "    pm.expect(jsonData).to.have.property(\"id\");",
+                  "    pm.expect(jsonData).to.have.property(\"title\");",
+                  "    pm.expect(jsonData).to.have.property(\"body\");",
+                  "});",
+                  "",
+                  "pm.test(\"Post ID is 1\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.id).to.eql(1);",
+                  "});",
+                  "",
+                  "pm.test(\"userId is a number\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.userId).to.be.a(\"number\");",
+                  "});",
+                  "",
+                  "pm.test(\"Title is a non-empty string\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.title).to.be.a(\"string\").and.to.have.length.above(0);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts/1",
+              "protocol": "https",
+              "host": [
+                "jsonplaceholder",
+                "typicode",
+                "com"
+              ],
+              "path": [
+                "posts",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Create Post (Positive)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 201 Created\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test(\"Response time is less than 2000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});",
+                  "",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "pm.test(\"Response body has required fields\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"id\");",
+                  "    pm.expect(jsonData).to.have.property(\"title\");",
+                  "    pm.expect(jsonData).to.have.property(\"body\");",
+                  "    pm.expect(jsonData).to.have.property(\"userId\");",
+                  "});",
+                  "",
+                  "pm.test(\"Title matches sent value\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.title).to.eql(\"foo\");",
+                  "});",
+                  "",
+                  "pm.test(\"Body matches sent value\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.body).to.eql(\"bar\");",
+                  "});",
+                  "",
+                  "pm.test(\"userId matches sent value\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.userId).to.eql(1);",
+                  "});",
+                  "",
+                  "pm.test(\"New post ID is assigned (101)\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.id).to.eql(101);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\": \"foo\", \"body\": \"bar\", \"userId\": 1}"
+            },
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts",
+              "protocol": "https",
+              "host": [
+                "jsonplaceholder",
+                "typicode",
+                "com"
+              ],
+              "path": [
+                "posts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT - Update Post (Positive)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response time is less than 2000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});",
+                  "",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "pm.test(\"Response body has all required fields\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"id\");",
+                  "    pm.expect(jsonData).to.have.property(\"title\");",
+                  "    pm.expect(jsonData).to.have.property(\"body\");",
+                  "    pm.expect(jsonData).to.have.property(\"userId\");",
+                  "});",
+                  "",
+                  "pm.test(\"Title is updated correctly\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.title).to.eql(\"updated title\");",
+                  "});",
+                  "",
+                  "pm.test(\"Body is updated correctly\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.body).to.eql(\"updated body\");",
+                  "});",
+                  "",
+                  "pm.test(\"Post ID remains 1\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.id).to.eql(1);",
+                  "});",
+                  "",
+                  "pm.test(\"userId remains 1\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.userId).to.eql(1);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"id\": 1, \"title\": \"updated title\", \"body\": \"updated body\", \"userId\": 1}"
+            },
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts/1",
+              "protocol": "https",
+              "host": [
+                "jsonplaceholder",
+                "typicode",
+                "com"
+              ],
+              "path": [
+                "posts",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH - Partial Update Post (Positive)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response time is less than 2000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});",
+                  "",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "pm.test(\"Title is patched correctly\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.title).to.eql(\"just changing the title\");",
+                  "});",
+                  "",
+                  "pm.test(\"Body field is preserved (not overwritten)\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"body\");",
+                  "    pm.expect(jsonData.body).to.be.a(\"string\").and.to.have.length.above(0);",
+                  "});",
+                  "",
+                  "pm.test(\"userId is preserved\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.userId).to.eql(1);",
+                  "});",
+                  "",
+                  "pm.test(\"Post ID is preserved as 1\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.id).to.eql(1);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\": \"just changing the title\"}"
+            },
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts/1",
+              "protocol": "https",
+              "host": [
+                "jsonplaceholder",
+                "typicode",
+                "com"
+              ],
+              "path": [
+                "posts",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE - Delete Post (Positive)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response time is less than 2000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});",
+                  "",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "pm.test(\"Response body is empty object (resource deleted)\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an(\"object\");",
+                  "    pm.expect(Object.keys(jsonData).length).to.eql(0);",
+                  "});",
+                  "",
+                  "pm.test(\"Response body is not null\", function () {",
+                  "    pm.expect(pm.response.json()).to.not.be.null;",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts/1",
+              "protocol": "https",
+              "host": [
+                "jsonplaceholder",
+                "typicode",
+                "com"
+              ],
+              "path": [
+                "posts",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Negative Testing",
+      "item": [
+        {
+          "name": "GET - Fetch Non-Existent Post (Negative)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 404 Not Found\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test(\"Response time is less than 2000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});",
+                  "",
+                  "pm.test(\"Response body is empty object for missing resource\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an(\"object\");",
+                  "    pm.expect(Object.keys(jsonData).length).to.eql(0);",
+                  "});",
+                  "",
+                  "pm.test(\"Response does not contain post data fields\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.not.have.property(\"userId\");",
+                  "    pm.expect(jsonData).to.not.have.property(\"title\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts/99999",
+              "protocol": "https",
+              "host": [
+                "jsonplaceholder",
+                "typicode",
+                "com"
+              ],
+              "path": [
+                "posts",
+                "99999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Create Post with Missing Fields (Negative)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// JSONPlaceholder is a mock API and still returns 201 even with empty body.",
+                  "// Negative test validates the response reflects missing data (no title, no body, no userId).",
+                  "pm.test(\"Status code is 201 (mock API accepts empty body)\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test(\"Response time is less than 2000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});",
+                  "",
+                  "pm.test(\"Response does NOT contain title field (missing in request)\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.not.have.property(\"title\");",
+                  "});",
+                  "",
+                  "pm.test(\"Response does NOT contain body field (missing in request)\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.not.have.property(\"body\");",
+                  "});",
+                  "",
+                  "pm.test(\"Response does NOT contain userId field (missing in request)\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.not.have.property(\"userId\");",
+                  "});",
+                  "",
+                  "pm.test(\"A new ID is still assigned by server\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"id\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts",
+              "protocol": "https",
+              "host": [
+                "jsonplaceholder",
+                "typicode",
+                "com"
+              ],
+              "path": [
+                "posts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT - Update Non-Existent Post (Negative)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// JSONPlaceholder returns 500 for PUT on non-existent resources",
+                  "pm.test(\"Status code is 500 (resource does not exist)\", function () {",
+                  "    pm.response.to.have.status(500);",
+                  "});",
+                  "",
+                  "pm.test(\"Response time is less than 2000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});",
+                  "",
+                  "pm.test(\"Response body is not a valid post object\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    // Should not return a valid post with all fields",
+                  "    const hasAllFields = jsonData.hasOwnProperty(\"userId\") &&",
+                  "                         jsonData.hasOwnProperty(\"title\") &&",
+                  "                         jsonData.hasOwnProperty(\"body\");",
+                  "    pm.expect(hasAllFields).to.be.false;",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"id\": 99999, \"title\": \"ghost update\", \"body\": \"this post does not exist\", \"userId\": 1}"
+            },
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts/99999",
+              "protocol": "https",
+              "host": [
+                "jsonplaceholder",
+                "typicode",
+                "com"
+              ],
+              "path": [
+                "posts",
+                "99999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH - Patch Non-Existent Post (Negative)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// JSONPlaceholder returns 500 for PATCH on non-existent resources",
+                  "pm.test(\"Status code is 500 (resource does not exist)\", function () {",
+                  "    pm.response.to.have.status(500);",
+                  "});",
+                  "",
+                  "pm.test(\"Response time is less than 2000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});",
+                  "",
+                  "pm.test(\"Response does not return a patched post\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.not.have.property(\"title\", \"patching a ghost\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\": \"patching a ghost\"}"
+            },
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts/99999",
+              "protocol": "https",
+              "host": [
+                "jsonplaceholder",
+                "typicode",
+                "com"
+              ],
+              "path": [
+                "posts",
+                "99999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE - Delete Non-Existent Post (Negative)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// JSONPlaceholder returns 500 for DELETE on non-existent resources",
+                  "pm.test(\"Status code is 500 (resource does not exist)\", function () {",
+                  "    pm.response.to.have.status(500);",
+                  "});",
+                  "",
+                  "pm.test(\"Response time is less than 2000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});",
+                  "",
+                  "pm.test(\"Response body is not a successful deletion response\", function () {",
+                  "    try {",
+                  "        const jsonData = pm.response.json();",
+                  "        // A successful delete returns {}, a 500 should not",
+                  "        pm.expect(Object.keys(jsonData).length).to.not.eql(0);",
+                  "    } catch(e) {",
+                  "        // If response is not JSON, that's also acceptable for a 500",
+                  "        pm.expect(true).to.be.true;",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts/99999",
+              "protocol": "https",
+              "host": [
+                "jsonplaceholder",
+                "typicode",
+                "com"
+              ],
+              "path": [
+                "posts",
+                "99999"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
