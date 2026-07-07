@@ -1,0 +1,27 @@
+{
+	"id": "04a08b40-e141-406d-8474-216ba51527a8",
+	"values": [
+		{
+			"key": "gID",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "gName",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "gUpdatedName",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"name": "930 Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2026-07-06T16:48:24.156Z",
+	"_postman_exported_using": "Postman/12.17.3"
+}

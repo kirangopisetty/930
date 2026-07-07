@@ -1,0 +1,302 @@
+{
+	"id": "f25c65ab-965a-440c-b22b-c910e22bd3c5",
+	"name": "Calculator",
+	"timestamp": "2026-07-07T16:39:23.886Z",
+	"collection_id": "54718023-4d27b88d-d26a-4a55-9acc-47de505f5392",
+	"folder_id": "54718023-4d67e08f-62ea-438a-8bed-2ba691ccaf18",
+	"environment_id": "54718023-43ba1d3e-89df-45bb-b344-fe4fea91f989",
+	"totalPass": 64,
+	"delay": "1000",
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2026-07-07T16:39:01.127Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "26289d9e-9e39-499f-a0b5-a9f6b0ecc042",
+			"name": "Add",
+			"url": "http://www.dneonline.com/calculator.asmx",
+			"time": 247,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if response code = 200": true,
+				"Verify if response time is < 2 seconds": true,
+				"Verify if response body is in XML format": true,
+				"Verify if response body is valid": true
+			},
+			"testPassFailCounts": {
+				"Verify if response code = 200": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response time is < 2 seconds": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response body is in XML format": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response body is valid": {
+					"pass": 4,
+					"fail": 0
+				}
+			},
+			"times": [
+				685,
+				251,
+				248,
+				247
+			],
+			"allTests": [
+				{
+					"Verify if response code = 200": true,
+					"Verify if response time is < 2 seconds": true,
+					"Verify if response body is in XML format": true,
+					"Verify if response body is valid": true
+				},
+				{
+					"Verify if response code = 200": true,
+					"Verify if response time is < 2 seconds": true,
+					"Verify if response body is in XML format": true,
+					"Verify if response body is valid": true
+				},
+				{
+					"Verify if response code = 200": true,
+					"Verify if response time is < 2 seconds": true,
+					"Verify if response body is in XML format": true,
+					"Verify if response body is valid": true
+				},
+				{
+					"Verify if response code = 200": true,
+					"Verify if response time is < 2 seconds": true,
+					"Verify if response body is in XML format": true,
+					"Verify if response body is valid": true
+				}
+			]
+		},
+		{
+			"id": "219e7f93-5adc-4fd5-9efd-7a5fd94b1b9c",
+			"name": "Subtract",
+			"url": "http://www.dneonline.com/calculator.asmx",
+			"time": 246,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if response code = 200": true,
+				"Verify if response time is < 2 seconds": true,
+				"Verify if response body is in XML format": true,
+				"Verify if response body is valid": true
+			},
+			"testPassFailCounts": {
+				"Verify if response code = 200": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response time is < 2 seconds": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response body is in XML format": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response body is valid": {
+					"pass": 4,
+					"fail": 0
+				}
+			},
+			"times": [
+				254,
+				253,
+				250,
+				246
+			],
+			"allTests": [
+				{
+					"Verify if response code = 200": true,
+					"Verify if response time is < 2 seconds": true,
+					"Verify if response body is in XML format": true,
+					"Verify if response body is valid": true
+				},
+				{
+					"Verify if response code = 200": true,
+					"Verify if response time is < 2 seconds": true,
+					"Verify if response body is in XML format": true,
+					"Verify if response body is valid": true
+				},
+				{
+					"Verify if response code = 200": true,
+					"Verify if response time is < 2 seconds": true,
+					"Verify if response body is in XML format": true,
+					"Verify if response body is valid": true
+				},
+				{
+					"Verify if response code = 200": true,
+					"Verify if response time is < 2 seconds": true,
+					"Verify if response body is in XML format": true,
+					"Verify if response body is valid": true
+				}
+			]
+		},
+		{
+			"id": "29c4d536-71ae-4357-b324-5647b4f86d55",
+			"name": "Multiply",
+			"url": "http://www.dneonline.com/calculator.asmx",
+			"time": 249,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if response code = 200": true,
+				"Verify if response time is < 2 seconds": true,
+				"Verify if response body is in XML format": true,
+				"Verify if response body is valid": true
+			},
+			"testPassFailCounts": {
+				"Verify if response code = 200": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response time is < 2 seconds": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response body is in XML format": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response body is valid": {
+					"pass": 4,
+					"fail": 0
+				}
+			},
+			"times": [
+				247,
+				246,
+				251,
+				249
+			],
+			"allTests": [
+				{
+					"Verify if response code = 200": true,
+					"Verify if response time is < 2 seconds": true,
+					"Verify if response body is in XML format": true,
+					"Verify if response body is valid": true
+				},
+				{
+					"Verify if response code = 200": true,
+					"Verify if response time is < 2 seconds": true,
+					"Verify if response body is in XML format": true,
+					"Verify if response body is valid": true
+				},
+				{
+					"Verify if response code = 200": true,
+					"Verify if response time is < 2 seconds": true,
+					"Verify if response body is in XML format": true,
+					"Verify if response body is valid": true
+				},
+				{
+					"Verify if response code = 200": true,
+					"Verify if response time is < 2 seconds": true,
+					"Verify if response body is in XML format": true,
+					"Verify if response body is valid": true
+				}
+			]
+		},
+		{
+			"id": "0e3248bf-fb4b-40e4-87c4-f0f7e813eea4",
+			"name": "Divide",
+			"url": "http://www.dneonline.com/calculator.asmx",
+			"time": 246,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if response code = 200": true,
+				"Verify if response time is < 2 seconds": true,
+				"Verify if response body is in XML format": true,
+				"Verify if response body is valid": true
+			},
+			"testPassFailCounts": {
+				"Verify if response code = 200": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response time is < 2 seconds": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response body is in XML format": {
+					"pass": 4,
+					"fail": 0
+				},
+				"Verify if response body is valid": {
+					"pass": 4,
+					"fail": 0
+				}
+			},
+			"times": [
+				247,
+				263,
+				246,
+				246
+			],
+			"allTests": [
+				{
+					"Verify if response code = 200": true,
+					"Verify if response time is < 2 seconds": true,
+					"Verify if response body is in XML format": true,
+					"Verify if response body is valid": true
+				},
+				{
+					"Verify if response code = 200": true,
+					"Verify if response time is < 2 seconds": true,
+					"Verify if response body is in XML format": true,
+					"Verify if response body is valid": true
+				},
+				{
+					"Verify if response code = 200": true,
+					"Verify if response time is < 2 seconds": true,
+					"Verify if response body is in XML format": true,
+					"Verify if response body is valid": true
+				},
+				{
+					"Verify if response code = 200": true,
+					"Verify if response time is < 2 seconds": true,
+					"Verify if response body is in XML format": true,
+					"Verify if response body is valid": true
+				}
+			]
+		}
+	],
+	"count": 4,
+	"totalTime": 4429,
+	"collection": {
+		"requests": [
+			{
+				"id": "26289d9e-9e39-499f-a0b5-a9f6b0ecc042",
+				"method": "POST"
+			},
+			{
+				"id": "219e7f93-5adc-4fd5-9efd-7a5fd94b1b9c",
+				"method": "POST"
+			},
+			{
+				"id": "29c4d536-71ae-4357-b324-5647b4f86d55",
+				"method": "POST"
+			},
+			{
+				"id": "0e3248bf-fb4b-40e4-87c4-f0f7e813eea4",
+				"method": "POST"
+			}
+		]
+	}
+}
