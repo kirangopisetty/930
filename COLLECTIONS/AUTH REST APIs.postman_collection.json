@@ -1,0 +1,279 @@
+{
+  "info": {
+    "_postman_id": "bc84b983-92b0-486c-b784-b7ec826304b7",
+    "name": "AUTH REST APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54718023",
+    "_collection_link": "https://go.postman.co/collection/54718023-bc84b983-92b0-486c-b784-b7ec826304b7?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "BASIC AUTH API",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Verify if status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify if response time is < 1000ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify if Content-Type=application/json\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify if response body is valid\", function () {\r",
+              "    pm.expect(pm.response.text()).to.include(\"authenticated\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "passwd",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "user",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://httpbin.org/basic-auth/user/passwd",
+          "protocol": "http",
+          "host": [
+            "httpbin",
+            "org"
+          ],
+          "path": [
+            "basic-auth",
+            "user",
+            "passwd"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "BEARER ACCESS TOKEN API",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Verify if status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify if response time is < 1000ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify if Content-Type=application/json\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify if response body is valid\", function () {\r",
+              "    pm.expect(pm.response.text()).to.include(\"authenticated\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "Bearer12345",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://httpbin.org/bearer",
+          "protocol": "http",
+          "host": [
+            "httpbin",
+            "org"
+          ],
+          "path": [
+            "bearer"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DIGEST AUTH API",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Verify if status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify if response time is < 1000ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify if Content-Type=application/json\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify if response body is valid\", function () {\r",
+              "    pm.expect(pm.response.text()).to.include(\"authenticated\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "digest",
+          "digest": [
+            {
+              "key": "algorithm",
+              "value": "MD5",
+              "type": "string"
+            },
+            {
+              "key": "qop",
+              "value": "auth",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "passwd",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "user",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://httpbin.org/digest-auth/auth/user/passwd",
+          "protocol": "http",
+          "host": [
+            "httpbin",
+            "org"
+          ],
+          "path": [
+            "digest-auth",
+            "auth",
+            "user",
+            "passwd"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "API KEY AUTH",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Verify if status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify if response time is < 1000ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify if Content-Type=application/json\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify if response body is valid\", function () {\r",
+              "    pm.expect(pm.response.text()).to.include(\"weather\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "in",
+              "value": "query",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "appid",
+              "type": "string"
+            },
+            {
+              "key": "value",
+              "value": "d245e49ed4ffb3cff7a6b57b08a0a0e9",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.openweathermap.org/data/2.5/weather?q=Hyderabad",
+          "protocol": "https",
+          "host": [
+            "api",
+            "openweathermap",
+            "org"
+          ],
+          "path": [
+            "data",
+            "2.5",
+            "weather"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "Hyderabad"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
